@@ -6,10 +6,13 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 20:39:14 by changhyl          #+#    #+#             */
-/*   Updated: 2023/07/11 21:26:45 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/07/11 22:47:09 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-
+void	run_philo(t_arg *arg)
+{
+	
+}
