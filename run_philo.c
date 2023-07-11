@@ -6,9 +6,10 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 20:39:14 by changhyl          #+#    #+#             */
-/*   Updated: 2023/07/11 20:45:52 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:26:45 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include 
 #include "philo.h"
+
+

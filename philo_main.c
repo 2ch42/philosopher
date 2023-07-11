@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 16:46:10 by changhyl          #+#    #+#             */
-/*   Updated: 2023/07/11 20:43:48 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:28:36 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	main(int argc, char *argv[])
 {
-	s_arg	*arg;
+	t_arg	*arg;
 	int		arg_val;
 
 	if (argc != 5 && argc != 6)
@@ -29,5 +29,7 @@ int	main(int argc, char *argv[])
 			free(arg);
 		return (0);
 	}
-	
+	run_philo(arg);
+	free(arg);
+	return (0);
 }
