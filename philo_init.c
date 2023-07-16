@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_philo.c                                        :+:      :+:    :+:   */
+/*   philo_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/16 18:29:46 by changhyl          #+#    #+#             */
-/*   Updated: 2023/07/16 21:05:58 by changhyl         ###   ########.fr       */
+/*   Created: 2023/07/16 19:31:15 by changhyl          #+#    #+#             */
+/*   Updated: 2023/07/16 19:43:03 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,9 @@ void	init_data(t_arg *arg, t_data *data)
 		data->errno = -1;
 		return ;
 	}
-	init_fork(arg, data);
 	i = 0;
-	while (i++ < arg->phil_num)
-	{
+	while (i < arg->phil_num)
 		data->philos[i].num = i + 1;
-		data->die = 0;
-		pthread_create(data->philos[i].thread, NULL, ~, ~);
-	}
-}
-
-void	run_philo(t_arg *arg, t_data *data)
-{
-	init_data(arg, data);
-	if (data->errno != 0)
-		return ;
-	free_clear(arg, data);
+	init_fork(arg, data);
+	while (i < arg->
 }

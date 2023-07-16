@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 21:10:32 by changhyl          #+#    #+#             */
-/*   Updated: 2023/07/15 22:40:30 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/07/16 21:05:43 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,23 @@ typedef struct	s_arg
 
 typedef struct	s_philo
 {
-	pthread_t	thread;
-	int	count;
+	pthread_t		thread;
+	int				num;
+	int				fork_l;
+	int				*fork_r;
+	int				eat_count;
 }	t_philo;
 
 typedef struct	s_data
 {
-	pthread_mutex_t	*print;
-	pthread_mutex_t *fork;
-	pthread_mutex_t	*count;
-	pthread_mutex_t	*die;
+	int					errno;
+	int					die;
+	unsigned long long	start_time;
+	t_philo				*philos;
+	pthread_mutex_t		forks;
+	pthread_mutex_t		print;
+	pthread_mutex_t		count;
+	pthread_mutex_t		death;
 }	t_data;
 
 int	ft_atoi(const char *str);
