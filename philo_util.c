@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philo_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/09 16:46:10 by changhyl          #+#    #+#             */
-/*   Updated: 2023/07/15 19:44:35 by changhyl         ###   ########.fr       */
+/*   Created: 2023/07/15 22:40:52 by changhyl          #+#    #+#             */
+/*   Updated: 2023/07/16 02:14:41 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
+#include <sys/time.h>
 
-int	main(int argc, char *argv[])
+unsigned long long	get_time(void)
 {
-	s_arg	*arg;
+	struct	timeval	tp;
 
-	if (argc != 5 && argc != 6)
-		return (0);
-	arg = (s_arg *)malloc(sizeof(s_arg));
+	gettimeofday(&tp, NULL);
+	return (tp.tv_sec * 1000 + tp.tv_usec / 1000);
 }
