@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:18:12 by changhyl          #+#    #+#             */
-/*   Updated: 2023/07/11 20:26:04 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:41:44 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	check_str(char *str)
 
 int	init_arg(t_arg *arg, int argc, char *argv[])
 {
-	arg = (t_arg *)malloc(sizeof(t_arg));
+	arg = (t_arg *)malloc(size(t_arg));
 	if (!arg)
 		return (-1);
 	if (!(check_str(argv[1]) && check_str(argv[2]) && check_str(argv[3])

@@ -6,12 +6,28 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 21:10:32 by changhyl          #+#    #+#             */
-/*   Updated: 2023/07/16 21:05:43 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:57:06 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
+
+#ifndef FORK
+# define FORK "has taken a fork"
+#endif
+#ifndef EATING
+# define EATING "is eating"
+#endif
+#ifndef SLEEPING
+# define SLEEPING "is sleeping"
+#endif
+#ifndef THINKING
+# define THINKING "is thinking"
+#endif
+#ifndef DIED
+# define DIED "died"
+#endif
 
 typedef struct	s_arg
 {

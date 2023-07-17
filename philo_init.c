@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 19:31:15 by changhyl          #+#    #+#             */
-/*   Updated: 2023/07/16 19:43:03 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:16:24 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,4 @@ void	init_data(t_arg *arg, t_data *data)
 	while (i < arg->phil_num)
 		data->philos[i].num = i + 1;
 	init_fork(arg, data);
-	while (i < arg->
 }
