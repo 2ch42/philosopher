@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 21:10:32 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/12 17:21:19 by ch               ###   ########.fr       */
+/*   Updated: 2023/08/17 19:53:11 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # ifndef DIED
 #  define DIED "died"
 # endif
+
+# include <pthread.h>
 
 typedef struct s_arg
 {

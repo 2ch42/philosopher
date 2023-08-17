@@ -6,11 +6,13 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 22:40:52 by changhyl          #+#    #+#             */
-/*   Updated: 2023/07/17 14:45:44 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/17 19:39:17 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <sys/time.h>
+#include "philo.h"
 
 void	free_clear(t_arg *arg, t_data *data)
 {
@@ -26,6 +28,10 @@ void	free_clear(t_arg *arg, t_data *data)
 	pthread_mutex_destroy(&(data->print));
 	pthread_mutex_destroy(&(data->count));
 	pthread_mutex_destroy(&(data->death));
+	free(arg);
+	free(data);
+	arg = NULL;
+	data = NULL;
 }
 
 unsigned long long	get_time(void)

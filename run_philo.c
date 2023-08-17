@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 18:29:46 by changhyl          #+#    #+#             */
-/*   Updated: 2023/07/16 21:05:58 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/17 20:16:24 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_data(t_arg *arg, t_data *data)
 	pthread_mutex_init(&(data->count), NULL);
 	pthread_mutex_init(&(data->death), NULL);
 	data->philos = (t_philo *)malloc(sizeof(t_philo) * arg->num_phil);
-	if (!data->philo)
+	if (!data->philos)
 	{
 		data->errno = -1;
 		return ;

@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 20:09:36 by changhyl          #+#    #+#             */
-/*   Updated: 2023/07/17 15:26:22 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/17 21:34:40 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ void	philo_eat(t_data *data, t_philo *philo)
 
 void	philo_death(t_arg *arg, t_data *data)
 {
-	//
+	//print
 }

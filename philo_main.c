@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 16:46:10 by changhyl          #+#    #+#             */
-/*   Updated: 2023/07/16 16:35:19 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/17 20:58:58 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,18 @@ int	main(int argc, char *argv[])
 	arg_val = init_arg(arg, argc, argv);
 	if (arg_val == -1)
 	{
-		write(1, "Error!\n", 7);
+		write(2, "Error!\n", 7);
 		if (arg)
 			free(arg);
 		return (0);
 	}
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
+	{
+		free(arg);
 		return (0);
+	}
 	run_philo(arg, data);
-	free(arg);
+	free_clear(arg, data);
 	return (0);
 }
