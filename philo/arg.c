@@ -6,9 +6,11 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 11:58:03 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/19 12:20:39 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:53:04 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "philo.h"
 
 static int	ft_isdigit(int c)
 {

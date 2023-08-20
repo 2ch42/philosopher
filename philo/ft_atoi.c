@@ -6,11 +6,9 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:24:29 by changhyl          #+#    #+#             */
-/*   Updated: 2022/11/26 18:38:49 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:53:32 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 static int	check_whitespace(char c)
 {
