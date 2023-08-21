@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:19:53 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/20 21:05:36 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/21 18:01:00 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	init_philos(t_arg *arg, t_data *data, t_philo *philos)
 		philos[i].num = i + 1;
 		philos[i].fork_r = i;
 		if (i != 0)
-			fork_l = i - 1;
+			philos[i].fork_l = i - 1;
 		philos[i].eat_count = 0;
 		philos[i].last_meal = 0;
 		i++;
@@ -35,10 +35,11 @@ static void	init_philos(t_arg *arg, t_data *data, t_philo *philos)
 	i = 0;
 	while (i < arg->num_philos)
 	{
-		if (pthread_create(&(philos[i].thread), NULL, run_philos, &(philos[i])))
+		if (pthread_create(&(philos[i].thread), NULL, (void *)run_philos, &(philos[i])))
 			write(2, "pthread create error!\n", 22);
 		i++;
 	}
+	free_clear(arg, data, philos);
 }
 
 int	init_data(t_arg *arg, t_data *data)
@@ -46,7 +47,7 @@ int	init_data(t_arg *arg, t_data *data)
 	int		i;
 	t_philo	*philos;
 
-	data->start_time = get_time;
+	data->start_time = get_time();
 	data->arg = arg;
 	philos = (t_philo *)malloc(sizeof(t_philo) * arg->num_philos);
 	if (!philos)
@@ -63,7 +64,7 @@ int	init_data(t_arg *arg, t_data *data)
 	while (i < arg->num_philos)
 		pthread_mutex_init_s(&(data->forks[i++]));
 	pthread_mutex_init_s(&(data->print));
-	pthread_mutex_init_s(&(data->count));
 	pthread_mutex_init_s(&(data->death));
 	init_philos(arg, data, philos);
+	return (1);
 }

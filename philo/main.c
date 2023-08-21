@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 11:48:37 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/20 18:05:23 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/21 15:26:46 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char *argv[])
 	}
 	if (!init_data(&arg, &data))
 	{
-		write(2, "Error occured while initializing\n". 33);
+		write(2, "Error occured while initializing\n", 33);
 		return (0);
 	}
 	return (0);

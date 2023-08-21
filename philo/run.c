@@ -6,17 +6,26 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 16:52:06 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/20 21:59:29 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:17:11 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <pthread.h>
+#include <stdio.h>
 #include "philo.h"
 
 void	run_philos(t_philo *philo)
 {
 	while (1)
 	{
-		
+		if (philo->num % 2 == 1)
+			usleep (1000);
+		pick_fork(philo);
+		philo_eat(philo);
+		if (philo->eat_count == philo->data->arg->num_must)
+			break;
+		philo_sleep(philo);
+		philo_print(philo, THINKING);
 	}
 }

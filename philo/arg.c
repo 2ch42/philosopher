@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 11:58:03 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/20 16:53:04 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/21 15:27:32 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	init_arg(t_arg *arg, int argc, char *argv[])
 		return (0);
 	if (argc == 6 && check_str(argv[5]) == 0)
 		return (0);
-	if (argc == 6 && check_str(argv[5] == 1))
+	if (argc == 6 && check_str(argv[5]) == 1)
 		arg->num_must = ft_atoi(argv[5]);
 	if (argc == 5)
 		arg->num_must = -1;
