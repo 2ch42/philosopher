@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 20:08:52 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/21 17:35:00 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/23 22:14:41 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	philo_eat(t_philo *philo)
 	philo_print(philo, EATING);
 	philo->eat_count++;
 	opt_timer(philo->data->arg->time_to_eat);
-	pthread_mutex_unlock(&(philo->data->forks[philo->fork_l]));
 	pthread_mutex_unlock(&(philo->data->forks[philo->fork_r]));
+	pthread_mutex_unlock(&(philo->data->forks[philo->fork_l]));
 }
 
 void	philo_sleep(t_philo *philo)
