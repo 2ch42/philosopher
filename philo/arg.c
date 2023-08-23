@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 11:58:03 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/21 15:27:32 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/23 22:41:46 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ int	init_arg(t_arg *arg, int argc, char *argv[])
 	arg->time_to_die = ft_atoi(argv[2]);
 	arg->time_to_eat = ft_atoi(argv[3]);
 	arg->time_to_sleep = ft_atoi(argv[4]);
+	if (arg->num_philos == 1)
+		return (0);
 	return (1);
 }
