@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:04:51 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/24 19:27:05 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/24 21:48:14 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ typedef struct s_data
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		print;
 	pthread_mutex_t		death;
+	pthread_mutex_t		eat;
+	pthread_mutex_t		time;
 	int					die;
+	int					done_phil;
 }	t_data;
 
 typedef struct t_philo

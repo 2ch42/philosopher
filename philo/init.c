@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:19:53 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/24 20:03:15 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/24 21:45:43 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ static void	check_death(t_arg *arg, t_data *data, t_philo *philos)
 			return ;
 		}
 		pthread_mutex_unlock(&(data->death));
+		pthread_mutex_lock(&(data->eat));
+		if (data->done_phil == arg->num_philos)
+		{
+			pthread_mutex_unlock(&(data->eat));
+			return ;
+		}
+		pthread_mutex_unlock(&(data->eat));
 		while (i < arg->num_philos)
 		{
 			if (get_time() - philos[i].last_meal >= arg->time_to_die)
@@ -108,6 +115,8 @@ int	init_data(t_arg *arg, t_data *data)
 		pthread_mutex_init_s(&(data->forks[i++]));
 	pthread_mutex_init_s(&(data->print));
 	pthread_mutex_init_s(&(data->death));
+	pthread_mutex_init_s(&(data->eat));
+	pthread_mutex_init_s(&(data->time));
 	init_philos(arg, data, philos);
 	return (1);
 }
