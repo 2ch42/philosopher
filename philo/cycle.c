@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 20:08:52 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/25 02:25:35 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/25 03:15:23 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	pick_fork(t_philo *philo)
 {
 	if (!(pthread_mutex_lock(&(philo->data->forks[philo->fork_r]))))
 		philo_print(philo, FORK);
+	if (philo->data->arg->num_philos == 1)
+		return ;
 	if (!(pthread_mutex_lock(&(philo->data->forks[philo->fork_l]))))
 		philo_print(philo, FORK);
 }
