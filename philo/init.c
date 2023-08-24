@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:19:53 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/24 17:15:47 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:57:06 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ static void	check_death(t_arg *arg, t_data *data, t_philo *philos)
 			pthread_mutex_lock(&(data->death));
 			if (get_time() - philos[i].last_meal >= arg->time_to_die)
 			{
-				while (j < arg->num_philos)
-				{
-					philos[j++].die = 1;
-					data->die = 1;
-				}
+				data->die = 1;
 				philo_print(&(philos[i]), DIED);
 				pthread_mutex_unlock(&(data->death));
 				return ;

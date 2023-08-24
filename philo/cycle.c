@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 20:08:52 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/24 17:18:17 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/24 19:03:06 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,19 @@ void	philo_print(t_philo *philo, char *status)
 	unsigned long long	cur_time;
 
 	pthread_mutex_lock(&(philo->data->print));
+	pthread_mutex_lock(&(philo->data->death));
+	if (data->death)
+	{
+		pthread_mutex_unlock(&(philo->data->death));
+		pthread_mutex_unlock(&(philo->data->print));
+		return ;
+	}
 	cur_time = get_time();
 	printf("%llu %d %s\n", cur_time - philo->data->start_time,
 		philo->num, status);
 	if (!ft_strncmp(status, EATING, 6))
 		philo->last_meal = cur_time;
+	pthread_mutex_unlock(&(philo->data->death));
 	pthread_mutex_unlock(&(philo->data->print));
 }
 
