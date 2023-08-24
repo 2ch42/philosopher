@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 20:08:52 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/24 21:46:35 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/24 22:48:49 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ void	philo_print(t_philo *philo, char *status)
 		philo->num, status);
 	pthread_mutex_unlock(&(philo->data->print));
 	if (!ft_strncmp(status, EATING, 6))
+	{
+		pthread_mutex_lock(&(philo->time));
 		philo->last_meal = cur_time;
+		pthread_mutex_unlock(&(philo->time));
+	}
 }
 
 void	pick_fork(t_philo *philo)
@@ -48,6 +52,14 @@ void	philo_eat(t_philo *philo)
 {
 	philo_print(philo, EATING);
 	philo->eat_count++;
+	pthread_mutex_lock(&(philo->data->eat));
+	if (philo->eat_count == philo->data->arg->num_must)
+	{
+		philo->data->done_phil += 1;
+		pthread_mutex_unlock(&(philo->data->eat));
+		return ;
+	}
+	pthread_mutex_unlock(&(philo->data->eat));
 	opt_timer(philo->data->arg->time_to_eat);
 	pthread_mutex_unlock(&(philo->data->forks[philo->fork_r]));
 	pthread_mutex_unlock(&(philo->data->forks[philo->fork_l]));

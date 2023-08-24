@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:19:53 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/24 21:45:43 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/24 22:37:37 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 
 static void	check_death(t_arg *arg, t_data *data, t_philo *philos)
 {
-	int	i;
+	int					i;
+	unsigned long long	last_meal;
 
 	while (1)
 	{
@@ -39,7 +40,10 @@ static void	check_death(t_arg *arg, t_data *data, t_philo *philos)
 		pthread_mutex_unlock(&(data->eat));
 		while (i < arg->num_philos)
 		{
-			if (get_time() - philos[i].last_meal >= arg->time_to_die)
+			pthread_mutex_lock(&(philos[i].time));
+			last_meal = philos[i].last_meal;
+			pthread_mutex_unlock(&(philos[i].time));
+			if (get_time() - last_meal >= arg->time_to_die)
 			{
 				pthread_mutex_lock(&(data->death));
 				data->die = 1;
@@ -62,7 +66,9 @@ static void	init_thread(t_arg *arg, t_data *data, t_philo *philos)
 	i = 0;
 	while (i < arg->num_philos)
 	{
+		pthread_mutex_lock(&(philos[i].time));
 		philos[i].last_meal = data->start_time;
+		pthread_mutex_unlock(&(philos[i].time));
 		if (pthread_create(&(philos[i].thread), NULL, (void *)run_philos,
 				&(philos[i])))
 			write(2, "pthread create error!\n", 22);
@@ -83,7 +89,9 @@ static void	init_philos(t_arg *arg, t_data *data, t_philo *philos)
 		if (i != 0)
 			philos[i].fork_l = i - 1;
 		philos[i].eat_count = 0;
-		philos[i++].last_meal = 0;
+		philos[i].last_meal = 0;
+		pthread_mutex_init_s(&(philos[i].time));
+		i++;
 	}
 	philos[0].fork_l = arg->num_philos - 1;
 	init_thread(arg, data, philos);
@@ -116,7 +124,6 @@ int	init_data(t_arg *arg, t_data *data)
 	pthread_mutex_init_s(&(data->print));
 	pthread_mutex_init_s(&(data->death));
 	pthread_mutex_init_s(&(data->eat));
-	pthread_mutex_init_s(&(data->time));
 	init_philos(arg, data, philos);
 	return (1);
 }

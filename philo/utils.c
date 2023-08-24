@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:17:00 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/24 21:43:58 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/24 22:34:27 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,14 @@ void	free_clear(t_arg *arg, t_data *data, t_philo *philos)
 	while (i < arg->num_philos)
 	{
 		pthread_mutex_destroy(&(data->forks[i]));
+		pthread_mutex_destroy(&(philos[i].time));
 		i++;
 	}
 	pthread_mutex_destroy(&(data->print));
 	pthread_mutex_destroy(&(data->death));
 	pthread_mutex_destroy(&(data->eat));
-	pthread_mutex_destroy(&(data->time));
 	free(philos);
 	free(data->forks);
-	data->forks = NULL;
 }
 
 void	opt_timer(int time_arg)
