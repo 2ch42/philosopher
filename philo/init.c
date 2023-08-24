@@ -6,35 +6,43 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:19:53 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/24 18:57:06 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/24 20:03:15 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <pthread.h>
 #include "philo.h"
 
 static void	check_death(t_arg *arg, t_data *data, t_philo *philos)
 {
 	int	i;
-	int	j;
 
-	j = 0;
 	while (1)
 	{
 		i = 0;
+		pthread_mutex_lock(&(data->death));
+		if (data->die)
+		{
+			pthread_mutex_unlock(&(data->death));
+			return ;
+		}
+		pthread_mutex_unlock(&(data->death));
 		while (i < arg->num_philos)
 		{
-			pthread_mutex_lock(&(data->death));
 			if (get_time() - philos[i].last_meal >= arg->time_to_die)
 			{
+				pthread_mutex_lock(&(data->death));
 				data->die = 1;
-				philo_print(&(philos[i]), DIED);
 				pthread_mutex_unlock(&(data->death));
+				pthread_mutex_lock(&(data->print));
+				printf("%llu %d %s\n", get_time() - philos[i].data->start_time,
+					philos[i].num, DIED);
+				pthread_mutex_unlock(&(data->print));
 				return ;
 			}
-			pthread_mutex_unlock(&(data->death));
 			i++;
 		}
 	}
@@ -68,8 +76,7 @@ static void	init_philos(t_arg *arg, t_data *data, t_philo *philos)
 		if (i != 0)
 			philos[i].fork_l = i - 1;
 		philos[i].eat_count = 0;
-		philos[i].last_meal = 0;
-		philos[i++].die = 0;
+		philos[i++].last_meal = 0;
 	}
 	philos[0].fork_l = arg->num_philos - 1;
 	init_thread(arg, data, philos);
@@ -95,8 +102,8 @@ int	init_data(t_arg *arg, t_data *data)
 		philos = NULL;
 		return (0);
 	}
-	i = 0;
 	data->die = 0;
+	i = 0;
 	while (i < arg->num_philos)
 		pthread_mutex_init_s(&(data->forks[i++]));
 	pthread_mutex_init_s(&(data->print));

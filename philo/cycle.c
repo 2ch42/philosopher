@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 20:08:52 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/24 19:03:06 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/24 19:58:58 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,24 @@ void	philo_print(t_philo *philo, char *status)
 {
 	unsigned long long	cur_time;
 
-	pthread_mutex_lock(&(philo->data->print));
 	pthread_mutex_lock(&(philo->data->death));
-	if (data->death)
+	if (philo->data->die)
 	{
 		pthread_mutex_unlock(&(philo->data->death));
-		pthread_mutex_unlock(&(philo->data->print));
 		return ;
 	}
+	pthread_mutex_unlock(&(philo->data->death));
 	cur_time = get_time();
+	pthread_mutex_lock(&(philo->data->print));
 	printf("%llu %d %s\n", cur_time - philo->data->start_time,
 		philo->num, status);
+	pthread_mutex_unlock(&(philo->data->print));
 	if (!ft_strncmp(status, EATING, 6))
 		philo->last_meal = cur_time;
-	pthread_mutex_unlock(&(philo->data->death));
-	pthread_mutex_unlock(&(philo->data->print));
 }
 
 void	pick_fork(t_philo *philo)
 {
-	unsigned long long	start_time;
-
 	if (!(pthread_mutex_lock(&(philo->data->forks[philo->fork_r]))))
 		philo_print(philo, FORK);
 	if (!(pthread_mutex_lock(&(philo->data->forks[philo->fork_l]))))

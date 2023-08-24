@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:04:51 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/24 16:36:46 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/24 19:27:05 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct t_philo
 	int					num;
 	int					fork_l;
 	int					fork_r;
-	int					die;
 	int					eat_count;
 	unsigned long long	last_meal;
 }	t_philo;
