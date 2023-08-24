@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:17:00 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/23 22:09:40 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/24 17:12:45 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ void	opt_timer(int time_arg)
 	unsigned long long	start_time;
 
 	start_time = get_time();
-	while(get_time() < start_time + time_arg)
+	while (get_time () < start_time + time_arg)
 		usleep(10);
 }
