@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:19:53 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/25 03:03:07 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/25 21:52:25 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,25 @@
 #include <pthread.h>
 #include "philo.h"
 
+static int	early_check(t_arg *arg, t_data *data)
+{
+	pthread_mutex_lock(&(data->eat));
+	if (data->done_phil == arg->num_philos)
+	{
+		pthread_mutex_unlock(&(data->eat));
+		return (1);
+	}
+	pthread_mutex_unlock(&(data->eat));
+	pthread_mutex_lock(&(data->death));
+	if (data->die)
+	{
+		pthread_mutex_unlock(&(data->death));
+		return (1);
+	}
+	pthread_mutex_unlock(&(data->death));
+	return (0);
+}
+
 static void	check_death(t_arg *arg, t_data *data, t_philo *philos)
 {
 	int					i;
@@ -24,20 +43,8 @@ static void	check_death(t_arg *arg, t_data *data, t_philo *philos)
 	while (1)
 	{
 		i = 0;
-		pthread_mutex_lock(&(data->death));
-		if (data->die)
-		{
-			pthread_mutex_unlock(&(data->death));
+		if (early_check(arg, data))
 			return ;
-		}
-		pthread_mutex_unlock(&(data->death));
-		pthread_mutex_lock(&(data->eat));
-		if (data->done_phil == arg->num_philos)
-		{
-			pthread_mutex_unlock(&(data->eat));
-			return ;
-		}
-		pthread_mutex_unlock(&(data->eat));
 		while (i < arg->num_philos)
 		{
 			pthread_mutex_lock(&(philos[i].time));
@@ -114,10 +121,10 @@ int	init_data(t_arg *arg, t_data *data)
 	if (!data->forks)
 	{
 		free(philos);
-		philos = NULL;
 		return (0);
 	}
 	data->die = 0;
+	data->done_phil = 0;
 	i = 0;
 	while (i < arg->num_philos)
 		pthread_mutex_init_s(&(data->forks[i++]));
