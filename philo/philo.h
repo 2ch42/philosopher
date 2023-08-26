@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:04:51 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/26 15:36:26 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/26 17:56:34 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_data
 	int					done_phil;
 }	t_data;
 
-typedef struct t_philo
+typedef struct s_philo
 {
 	pthread_t			thread;
 	t_data				*data;
