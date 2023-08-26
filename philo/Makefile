@@ -6,7 +6,7 @@
 #    By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/07 16:59:22 by changhyl          #+#    #+#              #
-#    Updated: 2023/08/26 14:53:19 by changhyl         ###   ########.fr        #
+#    Updated: 2023/08/26 15:21:18 by changhyl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ $(NAME):	$(OBJS)
 
 clean:
 	rm -f $(OBJS)
-	
+
 fclean:	clean
 	rm -f $(NAME)
 
