@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:04:51 by changhyl          #+#    #+#             */
-/*   Updated: 2023/08/26 15:19:58 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/08/26 15:36:26 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 #  define THINKING "is thinking"
 # endif
 # ifndef DIED
-#  define DIED "died!"
+#  define DIED "died"
 # endif
 
 # include <pthread.h>
